@@ -1,8 +1,4 @@
-#header > nav > div > .logo > img{
-    width: 55px;
-    height: auto;
-}
-
+/*ESTILOS GENERALES */
 #main{
     min-height: calc(70vh);
 }

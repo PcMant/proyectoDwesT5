@@ -57,7 +57,8 @@ class Metodo
                     $token = sha1(bin2hex(random_bytes((100 - (100 % 2)) / 2)) . $user . $pass . date("Y-m-d H:i:s"));
 
                     try {
-                        $sqlToken = new PDO('mysql:host=localhost;dbname=actividad2', 'root', '');
+                        //$sqlToken = new PDO("mysql:host={$this->host_db};port={$this->port_db};dbname={$this->database};charset=utf8", $this->user_db, $this->pass_db);
+                        $sqlToken = $this->conexionDB();
 
                         // Consulta
                         $sqlTokenConsulta = 'UPDATE `usuarios` SET `token` = :token WHERE `user` = :usser AND `pass` = :pass';
@@ -143,23 +144,23 @@ class Metodo
      * @return bool
      * 
      */
-    public function insertarLibro($token, $titulo, $autor, $editiorial=null, $edicion=null, $isbn=null){
+    public function insertarLibro($token, $titulo, $autor, $editorial=null, $edicion=null, $isbn=null){
         $status = false;
 
-        if($this->tokenCheck()){
+        if($this->tokenCheck($token)){
             try {
                 // Conexion
                 //$tokenCheck = new  new PDO("mysql:host={$this->host_db};port={$this->port_db};dbname={$this->database};charset=utf8", $this->user_db, $this->pass_db);
                 $pdo = $this->conexionDB();
     
                 //Consulta
-                $sql = 'INSERT INTO `libros` (`titulo`,`autor`,`editorial`,`edicion`,`titulo`) VALUES(:titulo, :autor, :editorial, :edicion, :titulo)';
+                $sql = 'INSERT INTO `libros` (`titulo`,`autor`,`editorial`,`edicion`,`isbn`) VALUES (:titulo, :autor, :editorial, :edicion, :isbn)';
                 $sentencia = $pdo->prepare($sql);
                 $sentencia->bindParam(':titulo', $titulo);
                 $sentencia->bindParam(':autor', $autor);
                 $sentencia->bindParam(':editorial', $editorial);
                 $sentencia->bindParam(':edicion', $edicion);
-                $sentencia->bindParam(':isbn', $ibn);
+                $sentencia->bindParam(':isbn', $isbn);
                 $resultados = $sentencia->execute();
                 
                 // Se comprueba si se ejecuto bien la sentencia sql
@@ -284,7 +285,7 @@ class Metodo
     public function updateLibroById($token, $id, $titulo=null, $autor=null, $editiorial=null, $edicion=null, $isbn=null){
         $status = false;
 
-        if($this->tokenCheck()){
+        if($this->tokenCheck($token)){
             try {
                 // Conexion
                 //$tokenCheck = new  new PDO("mysql:host={$this->host_db};port={$this->port_db};dbname={$this->database};charset=utf8", $this->user_db, $this->pass_db);

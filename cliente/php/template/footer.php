@@ -7,7 +7,7 @@
     </footer>
 
     <!--Scripts para bootstrap y dependencias-->
-    <script type="text/javascript" src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
