@@ -282,7 +282,7 @@ class Metodo
      * @return bool
      * 
      */
-    public function updateLibroById($token, $id, $titulo=null, $autor=null, $editiorial=null, $edicion=null, $isbn=null){
+    public function updateLibroById($token, $id, $titulo, $autor, $editorial=null, $edicion=null, $isbn=null){
         $status = false;
 
         if($this->tokenCheck($token)){

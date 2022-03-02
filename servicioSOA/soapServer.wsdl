@@ -21,9 +21,20 @@
   <part name="titulo" type="xsd:string" />
   <part name="autor" type="xsd:string" />
   <part name="editorial" type="xsd:string" />
+  <part name="edicion" type="xsd:string" />
   <part name="isbn" type="xsd:int" /></message>
 <message name="Metodo.insertarLibroResponse">
-  <part name="return" type="xsd:bool" /></message>
+  <part name="return" type="xsd:boolean" /></message>
+<message name="Metodo.updateLibroByIdRequest">
+  <part name="token" type="xsd:string" />
+  <part name="id" type="xsd:int" />
+  <part name="titulo" type="xsd:string" />
+  <part name="autor" type="xsd:string" />
+  <part name="editorial" type="xsd:string" />
+  <part name="edicion" type="xsd:string" />
+  <part name="isbn" type="xsd:int" /></message>
+<message name="Metodo.updateLibroByIdResponse">
+  <part name="return" type="xsd:boolean" /></message>
 <message name="Metodo.selectTituloRequest">
   <part name="token" type="xsd:string" />
   <part name="titulo" type="xsd:string" /></message>
@@ -34,15 +45,6 @@
   <part name="autor" type="xsd:string" /></message>
 <message name="Metodo.selectAutorResponse">
   <part name="return" type="xsd:array" /></message>
-<message name="Metodo.updateLibroByIdRequest">
-  <part name="token" type="xsd:string" />
-  <part name="id" type="xsd:int" />
-  <part name="titulo" type="xsd:string" />
-  <part name="autor" type="xsd:string" />
-  <part name="editorial" type="xsd:string" />
-  <part name="isbn" type="xsd:int" /></message>
-<message name="Metodo.updateLibroByIdResponse">
-  <part name="return" type="xsd:bool" /></message>
 <portType name="proyectoDwesT5PortType">
   <operation name="Metodo.login">
     <input message="tns:Metodo.loginRequest"/>
@@ -56,6 +58,10 @@
     <input message="tns:Metodo.insertarLibroRequest"/>
     <output message="tns:Metodo.insertarLibroResponse"/>
   </operation>
+  <operation name="Metodo.updateLibroById">
+    <input message="tns:Metodo.updateLibroByIdRequest"/>
+    <output message="tns:Metodo.updateLibroByIdResponse"/>
+  </operation>
   <operation name="Metodo.selectTitulo">
     <input message="tns:Metodo.selectTituloRequest"/>
     <output message="tns:Metodo.selectTituloResponse"/>
@@ -63,10 +69,6 @@
   <operation name="Metodo.selectAutor">
     <input message="tns:Metodo.selectAutorRequest"/>
     <output message="tns:Metodo.selectAutorResponse"/>
-  </operation>
-  <operation name="Metodo.updateLibroById">
-    <input message="tns:Metodo.updateLibroByIdRequest"/>
-    <output message="tns:Metodo.updateLibroByIdResponse"/>
   </operation>
 </portType>
 <binding name="proyectoDwesT5Binding" type="tns:proyectoDwesT5PortType">
@@ -86,6 +88,11 @@
     <input><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
     <output><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>
+  <operation name="Metodo.updateLibroById">
+    <soap:operation soapAction="http://localhost/proyectoDwesT5/servicioSOA/soapServer.php/Metodo.updateLibroById" style="rpc"/>
+    <input><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
   <operation name="Metodo.selectTitulo">
     <soap:operation soapAction="http://localhost/proyectoDwesT5/servicioSOA/soapServer.php/Metodo.selectTitulo" style="rpc"/>
     <input><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
@@ -93,11 +100,6 @@
   </operation>
   <operation name="Metodo.selectAutor">
     <soap:operation soapAction="http://localhost/proyectoDwesT5/servicioSOA/soapServer.php/Metodo.selectAutor" style="rpc"/>
-    <input><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
-    <output><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
-  </operation>
-  <operation name="Metodo.updateLibroById">
-    <soap:operation soapAction="http://localhost/proyectoDwesT5/servicioSOA/soapServer.php/Metodo.updateLibroById" style="rpc"/>
     <input><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
     <output><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>

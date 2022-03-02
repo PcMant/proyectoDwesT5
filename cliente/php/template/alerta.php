@@ -14,7 +14,7 @@ if(!empty($_GET['login']) && $_GET['login'] == 'false'){
 /*alerta de insertar o actualizar*/
 if(!empty($_GET['up']) && $_GET['up'] == 'false'){
     echo $alerta->error('Ha ocurrido un error, revisa los datos y intentelo de nuevo. Si el problema persiste contacte con soporte.');
-}elseif(!empty($_GET['up']) && $_GET['login'] == 'up'){
+}elseif(!empty($_GET['up'])){
     echo $alerta->aviso('La base de datos ha sido actualizada correctamente.');
 }
 
