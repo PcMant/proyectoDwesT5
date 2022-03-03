@@ -1,4 +1,10 @@
 <?php
+/**
+ * Pequeño script que cierra la sesión.
+ * 
+ * @author Juan Molina
+ */
+
 session_start();
 
 // Cierro la sesión

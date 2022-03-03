@@ -1,3 +1,10 @@
+<?php
+/**
+ * Este documento es el footer de la página
+ * 
+ * @author Juan Molina
+ */
+?>
 </main>
     <!-- Fin de contenido -->
 

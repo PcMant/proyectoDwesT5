@@ -1,4 +1,14 @@
 <?php
+/**
+ * Este script está destinado a cargarse justo antes del html debido a la redirección
+ * header la cual hay usarla antes de poner cualquier html o si no no se podrá modificar cabeceras.
+ * 
+ * El script hace las llamadas al servicio SOA y mediante comprobaciones lo aplica que sus correspondientes
+ * páginas los métodos destinados a estas.
+ * 
+ * @author Juan Molina
+ */
+
 session_start();
 
 require_once("php/libs/nusoap.php");

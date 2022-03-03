@@ -1,4 +1,11 @@
-<?php 
+<?php
+/**
+ * Este documento es la cabecera
+ * 
+ * @author Juan Molina
+ */
+
+
 // Comprobaciones previas
 require_once 'php/comprobarAntesHtml.php';
 

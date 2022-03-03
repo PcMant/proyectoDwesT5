@@ -1,4 +1,12 @@
 <?php
+/**
+ * - Este script se encarga de crear un objeto de la clase Alertas y en función
+ * de una serie de condiciones se muestra una alerta u otra.
+ * - Este script se puede hacer include en cualquier parte del body del HTML.
+ * 
+ * @autor Juan Molina
+ */
+
 require_once 'php/Alertas.php';
 
 

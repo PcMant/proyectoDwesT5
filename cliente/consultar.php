@@ -22,6 +22,8 @@
 
                 <hr class="my-3" />
 
+                <?='<p><strong>Resultados:</strong> '.count($resultados).'</p>' //Cantidad de resultados?>
+
                 <table class="table table table-striped table-bordered">
                 <tr class="text-center">
                     <th>Id</th>
