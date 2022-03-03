@@ -21,6 +21,8 @@ if(preg_match('/^index.php*/i',basename($_SERVER['REQUEST_URI'])) || preg_match(
     $title= 'Borrar libro';
 }elseif(preg_match('/^consultar.php*/i',basename($_SERVER['REQUEST_URI']))){
     $title= 'Consultar';
+}elseif(preg_match('/^noticias.php*/i',basename($_SERVER['REQUEST_URI']))){
+    $title= 'Noticias';
 }else{
     $title = '';
 }
@@ -63,6 +65,9 @@ $title = empty($title) ? '' : $title.' - PcMantBooks';
                                 ?>" aria-current="page" href="index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link <?php echo preg_match('/^noticias.php*/i',basename($_SERVER['REQUEST_URI'])) ? 'active' : '';?>" href="noticias.php" tabindex="-1" aria-disabled="true">Noticias</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link <?php echo preg_match('/^insertar.php*/i',basename($_SERVER['REQUEST_URI'])) ? 'active' : '';?>" href="insertar.php">Añadir libro</a>
                         </li>
                         <li class="nav-item">
@@ -79,7 +84,7 @@ $title = empty($title) ? '' : $title.' - PcMantBooks';
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <?=empty($_SESSION['usuario']) && empty($_SESSION['password']) ? 'Invitado' : $_SESSION['usuario']?>
+                                <?=empty($_SESSION['usuario']) && empty($_SESSION['token']) ? 'Invitado' : $_SESSION['usuario']?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="index.php">Iniciar sesión</a></li>
