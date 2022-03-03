@@ -36,6 +36,7 @@ En está carpeta se encuentra la librería nusoap y los scipts necesarios para f
 - Antes de poder hacer cualquier acción debes de iniciar sesión, de lo contrario nada de lo que intentes hacer hará efecto y saldrá una alerta de bootstrap que te notificará que no tienes los privilegios.
 - Dispones de un menú con varias opciones:
   - Inicio: Para iniciar la sesión.
+  - Noticias: Aquí podrás ver noticias acerca de libros obtenidas de la [API mediastack](https://mediastack.com/).
   - Añadir libro: Aquí podrás añadir nuevos libros, todos los campos del formulario pueden ser vacíos excepto el título.
   - Editar libro: Aquí podrás modificar libros ya introducidos bajo el criterio de la id con el que fue registrado.
   - Borrar libro: Aquí podrás borrar libros poniendo la id con la que fue registrado.

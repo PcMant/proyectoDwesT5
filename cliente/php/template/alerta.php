@@ -29,7 +29,8 @@ if(!empty($_GET['up']) && $_GET['up'] == 'false'){
 /*Alerta de que no tienes privilegios*/
 if ((preg_match('/^insertar.php*/i', basename($_SERVER['REQUEST_URI'])) 
     || preg_match('/^actualizar.php*/i', basename($_SERVER['REQUEST_URI'])) 
-    || preg_match('/^consultar.php*/i', basename($_SERVER['REQUEST_URI'])))
+    || preg_match('/^consultar.php*/i', basename($_SERVER['REQUEST_URI']))
+    || preg_match('/^borrar.php*/i', basename($_SERVER['REQUEST_URI'])))
     && (!empty($_SESSION['token']) && !$clienteSOAP->call('Metodo.tokenCheck', array('token' => $_SESSION['token']))
         || empty($_SESSION['token']))) {
             echo $alerta->error('Su sesión ha expirado o no tienes privilegios para esta opción.');   
