@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `biblioteca`
 --
-
+DROP DATABASE IF EXISTS `biblioteca`;
+USE `biblioteca`;
 -- --------------------------------------------------------
 
 --
@@ -38,7 +39,6 @@ CREATE TABLE IF NOT EXISTS `libros` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-use biblioteca;
 --
 -- Volcado de datos para la tabla `libros`
 --
