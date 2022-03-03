@@ -8,7 +8,8 @@ $clienteSOAP = new nusoap_client('../servicioSOA/soapServer.wsdl', true);
 // Comprobación de si me encuntro en alguna de las siguientes paginas y tengo un token valido
 if ((preg_match('/^insertar.php*/i', basename($_SERVER['REQUEST_URI'])) 
     || preg_match('/^actualizar.php*/i', basename($_SERVER['REQUEST_URI'])) 
-    || preg_match('/^consultar.php*/i', basename($_SERVER['REQUEST_URI'])))
+    || preg_match('/^consultar.php*/i', basename($_SERVER['REQUEST_URI']))
+    || preg_match('/^borrar.php*/i', basename($_SERVER['REQUEST_URI'])))
     && !empty($_SESSION['token']) && $clienteSOAP->call('Metodo.tokenCheck', array('token' => $_SESSION['token']))) {
         
     // Comprobar el insertado de libro
@@ -60,15 +61,49 @@ if ((preg_match('/^insertar.php*/i', basename($_SERVER['REQUEST_URI']))
              'isbn' => $_GET['isbn']
          ));
 
-         if($update) {
+        if($update) {
                 header('Location: actualizar.php?up=true');
-            }else{
+        }else{
                 header('Location: actualizar.php?up=false');
-            }
+        }
      }
+
+    // Comprobar borrado de libro
+    if(preg_match('/^borrar.php*/i', basename($_SERVER['REQUEST_URI'])) == 1){
+        if(isset($_GET['id']) && !empty($_GET['id'])){
+
+            $borrar = $clienteSOAP->call('Metodo.deleteLibro', array('token' => $_SESSION['token'], 'id' => $_GET['id']));
+
+            if($borrar) {
+                header('Location: borrar.php?up=true');
+            }else{
+                header('Location: borrar.php?up=false');
+            }
+
+        }elseif(isset($_GET['id'])){
+            header('Location: borrar.php?up=false');
+        }
+    }
 
 
     // Comprobar consulta de libro
+     $resultados = [];
+
+    if(
+        preg_match('/^consultar.php*/i', basename($_SERVER['REQUEST_URI'])) == 1
+        && !empty($_GET['campo'])
+    ){
+        $criterio = !empty($_GET['criterio']) ? $_GET['criterio'] : null;
+        $campo = $_GET['campo'];
+
+        if($campo == 'titulo'){
+            $result = $clienteSOAP->call('Metodo.selectTitulo', array('token' => $_SESSION['token'], 'titulo' => $criterio));
+        }else if($campo == 'autor'){
+            $result = $clienteSOAP->call('Metodo.selectAutor', array('token' => $_SESSION['token'], 'autor' => $criterio));
+        }
+
+        $resultados = json_decode($result, true);
+    }
 
 }else{
 

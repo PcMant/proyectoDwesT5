@@ -10,6 +10,8 @@ if(preg_match('/^index.php*/i',basename($_SERVER['REQUEST_URI'])) || preg_match(
     $title= 'Añadir libro';
 }elseif(preg_match('/^actualizar.php*/i',basename($_SERVER['REQUEST_URI']))){
     $title= 'Editar libro';
+}elseif(preg_match('/^borrar.php*/i',basename($_SERVER['REQUEST_URI']))){
+    $title= 'Borrar libro';
 }elseif(preg_match('/^consultar.php*/i',basename($_SERVER['REQUEST_URI']))){
     $title= 'Consultar';
 }else{
@@ -58,6 +60,9 @@ $title = empty($title) ? '' : $title.' - PcMantBooks';
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php echo preg_match('/^actualizar.php*/i',basename($_SERVER['REQUEST_URI'])) ? 'active' : '';?>" href="actualizar.php" tabindex="-1" aria-disabled="true">Editar libro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo preg_match('/^borrar.php*/i',basename($_SERVER['REQUEST_URI'])) ? 'active' : '';?>" href="borrar.php" tabindex="-1" aria-disabled="true">Borrar libro</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php echo preg_match('/^consultar.php*/i',basename($_SERVER['REQUEST_URI'])) ? 'active' : '';?>" href="consultar.php" tabindex="-1" aria-disabled="true">Consultar</a>

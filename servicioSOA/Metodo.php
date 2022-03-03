@@ -204,15 +204,9 @@ class Metodo
                 $sql = 'SELECT * FROM `libros` WHERE `titulo`=:titulo';
                 $sentencia = $pdo->prepare($sql);
                 $sentencia->bindParam(':titulo', $titulo);
-                $resultados = $sentencia->execute();
+                $sentencia->execute();
+                $resultados = $sentencia->fetchAll();
                 
-                // Se comprueba si se ejecuto bien la sentencia sql
-                if ($resultados) {
-                    $resultados;
-                } else {
-                    $resultados = $resultados['id'] = 'Error! Verifique la tabla';
-                    throw new Exception('¡Error! Error en la consulta, verifica la tabla');
-                }
             } catch (PDOException $e) {
                 print "¡Error!: " . $e->getMessage() . "<br/>";
                 $resultados['id'] = 'Error! '.$e->getMessage();
@@ -222,7 +216,7 @@ class Metodo
             $resultados['id'] = 'Error! token invalido, inicie sesión de nuevo';
         }
 
-        return $resultados;
+        return json_encode($resultados);
     }
 
     /**
@@ -244,18 +238,19 @@ class Metodo
                 $pdo = $this->conexionDB();
     
                 //Consulta
-                $sql = 'SELECT * FROM `libros` WHERE `titulo`=:autor';
+                $sql = 'SELECT * FROM `libros` WHERE `autor`=:autor';
                 $sentencia = $pdo->prepare($sql);
                 $sentencia->bindParam(':autor', $autor);
-                $resultados = $sentencia->execute();
+                $sentencia->execute();
+                $resultados = $sentencia->fetchAll();
                 
                 // Se comprueba si se ejecuto bien la sentencia sql
-                if ($resultados) {
-                    $resultados;
-                } else {
-                    $resultados = $resultados['id'] = 'Error! Verifique la tabla';
-                    throw new Exception('¡Error! Error en la consulta, verifica la tabla');
-                }
+                // if ($resultados) {
+                //     $resultados;
+                // } else {
+                //     $resultados = $resultados['id'] = 'Error! Verifique la tabla';
+                //     throw new Exception('¡Error! Error en la consulta, verifica la tabla');
+                // }
             } catch (PDOException $e) {
                 print "¡Error!: " . $e->getMessage() . "<br/>";
                 $resultados['id'] = 'Error! '.$e->getMessage();
@@ -265,7 +260,7 @@ class Metodo
             $resultados['id'] = 'Error! token invalido, inicie sesión de nuevo';
         }
 
-        return $resultados;
+        return json_encode($resultados);
     }
 
     /**
@@ -300,6 +295,50 @@ class Metodo
                 $sentencia->bindParam(':editorial', $editorial);
                 $sentencia->bindParam(':edicion', $edicion);
                 $sentencia->bindParam(':isbn', $isbn);
+                $resultados = $sentencia->execute();
+                
+                // Se comprueba si se ejecuto bien la sentencia sql
+                if ($resultados) {
+                    $status = true;
+                } else {
+                    $status = false;
+                    throw new Exception('¡Error! Error en la consulta, verifica la tabla');
+                }
+            } catch (PDOException $e) {
+                print "¡Error!: " . $e->getMessage() . "<br/>";
+                $status = false;
+                die();
+            }
+        }else{
+            $status = false;
+        }
+
+        return $status;
+    }
+
+    /**
+     * Este método elimina libros en función de la Id que tenga en la base de datos
+     *
+     * @param string $token
+     * @param int $id
+     * 
+     * @return boolean
+     * 
+     */
+    public function deleteLibro($token, $id){
+
+        $status = false;
+
+        if($this->tokenCheck($token)){
+            try {
+                // Conexion
+                //$tokenCheck = new  new PDO("mysql:host={$this->host_db};port={$this->port_db};dbname={$this->database};charset=utf8", $this->user_db, $this->pass_db);
+                $pdo = $this->conexionDB();
+    
+                //Consulta
+                $sql = 'DELETE FROM `libros` WHERE `id`=:id';
+                $sentencia = $pdo->prepare($sql);
+                $sentencia->bindParam(':id', $id);
                 $resultados = $sentencia->execute();
                 
                 // Se comprueba si se ejecuto bien la sentencia sql

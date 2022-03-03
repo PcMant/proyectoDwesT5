@@ -35,16 +35,21 @@
   <part name="isbn" type="xsd:int" /></message>
 <message name="Metodo.updateLibroByIdResponse">
   <part name="return" type="xsd:boolean" /></message>
+<message name="Metodo.deleteLibroRequest">
+  <part name="token" type="xsd:string" />
+  <part name="id" type="xsd:int" /></message>
+<message name="Metodo.deleteLibroResponse">
+  <part name="return" type="xsd:boolean" /></message>
 <message name="Metodo.selectTituloRequest">
   <part name="token" type="xsd:string" />
   <part name="titulo" type="xsd:string" /></message>
 <message name="Metodo.selectTituloResponse">
-  <part name="return" type="xsd:array" /></message>
+  <part name="return" type="xsd:string" /></message>
 <message name="Metodo.selectAutorRequest">
   <part name="token" type="xsd:string" />
   <part name="autor" type="xsd:string" /></message>
 <message name="Metodo.selectAutorResponse">
-  <part name="return" type="xsd:array" /></message>
+  <part name="return" type="xsd:string" /></message>
 <portType name="proyectoDwesT5PortType">
   <operation name="Metodo.login">
     <input message="tns:Metodo.loginRequest"/>
@@ -61,6 +66,10 @@
   <operation name="Metodo.updateLibroById">
     <input message="tns:Metodo.updateLibroByIdRequest"/>
     <output message="tns:Metodo.updateLibroByIdResponse"/>
+  </operation>
+  <operation name="Metodo.deleteLibro">
+    <input message="tns:Metodo.deleteLibroRequest"/>
+    <output message="tns:Metodo.deleteLibroResponse"/>
   </operation>
   <operation name="Metodo.selectTitulo">
     <input message="tns:Metodo.selectTituloRequest"/>
@@ -90,6 +99,11 @@
   </operation>
   <operation name="Metodo.updateLibroById">
     <soap:operation soapAction="http://localhost/proyectoDwesT5/servicioSOA/soapServer.php/Metodo.updateLibroById" style="rpc"/>
+    <input><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+  <operation name="Metodo.deleteLibro">
+    <soap:operation soapAction="http://localhost/proyectoDwesT5/servicioSOA/soapServer.php/Metodo.deleteLibro" style="rpc"/>
     <input><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
     <output><soap:body use="encoded" namespace="urn:proyectodwest5" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
   </operation>

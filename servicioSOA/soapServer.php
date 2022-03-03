@@ -38,8 +38,10 @@ $server->register('Metodo.updateLibroById',
     ), 
     array('return' => 'xsd:boolean'), $ns);
 
-$server->register('Metodo.selectTitulo', array('token' => 'xsd:string', 'titulo' => 'xsd:string'), array('return' => 'xsd:array'), $ns);
-$server->register('Metodo.selectAutor', array('token' => 'xsd:string','autor' => 'xsd:string'), array('return' => 'xsd:array'), $ns);
+$server->register('Metodo.deleteLibro', array('token' => 'xsd:string', 'id' => 'xsd:int'), array('return' => 'xsd:boolean'), $ns);
+
+$server->register('Metodo.selectTitulo', array('token' => 'xsd:string', 'titulo' => 'xsd:string'), array('return' => 'xsd:string'), $ns);
+$server->register('Metodo.selectAutor', array('token' => 'xsd:string','autor' => 'xsd:string'), array('return' => 'xsd:string'), $ns);
 
 
 $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';

@@ -15,10 +15,10 @@
                     <input type="text" class="form-control" id="criterio" name="criterio" aria-describedby="criterio">
                 </div>
                 
-                <div class="text-center"><button type="submit" class="btn btn-dark w-100">Añadir registro</button></div>
+                <div class="text-center"><button type="submit" class="btn btn-dark w-100">Consultar</button></div>
             </form>
 
-            <?php if(true): ?>
+            <?php if(!empty($_GET['campo']) && !empty($_SESSION['token']) && $clienteSOAP->call('Metodo.tokenCheck', array('token' => $_SESSION['token']))): ?>
 
                 <hr class="my-3" />
 
@@ -33,7 +33,7 @@
                 </tr>
 
 
-                <?php //if(count($resultado) < 1): //En caso de 0 resultados muestro una fila vacia?>
+                <?php if(count($resultados) < 1): //En caso de 0 resultados muestro una fila vacia?>
                     <tr>
                         <td>ㅤ</td>
                         <td></td>
@@ -42,18 +42,18 @@
                         <td></td>
                         <td></td>
                     </tr>
-                <?php //endif; ?>
+                <?php endif; ?>
 
-                <?php //foreach ($resultado_alumnos as $dato): //Listando datos?>
+                <?php foreach ($resultados as $dato): //Listando datos?>
                     <tr>
-                        <!--td><?=$dato['id']?></td>
+                        <td><?=$dato['id']?></td>
                         <td><?=$dato['titulo']?></td>
                         <td><?=$dato['autor']?></td>
                         <td><?=$dato['editorial']?></td>
                         <td><?=$dato['edicion']?></td>
-                        <td><?=$dato['isbn']?></td-->
+                        <td><?=$dato['isbn']?></td>
                     </tr>
-                <?php //endforeach; ?>
+                <?php endforeach; ?>
             </table>
 
             <?php endif; ?>
