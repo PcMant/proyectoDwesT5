@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 -- Base de datos: `biblioteca`
 --
 DROP DATABASE IF EXISTS `biblioteca`;
+CREATE DATABASE `biblioteca`;
 USE `biblioteca`;
 -- --------------------------------------------------------
 
